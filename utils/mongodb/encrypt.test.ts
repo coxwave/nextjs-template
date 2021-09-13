@@ -22,8 +22,8 @@ describe('encrypt document', () => {
     expect(decodeId(id)).toStrictEqual(expected);
   });
 
-  // encodeDocument()
-  test('test encodeDocument()', () => {
+  // encodeDocument(Object)
+  test('test encodeDocument(input: Object)', () => {
     const user = {
       _id: new ObjectId('ffffffffffffffffffffffff'),
       username: 'foo',
@@ -36,8 +36,8 @@ describe('encrypt document', () => {
     expect(encodeDocument(user)).toStrictEqual(expected);
   });
 
-  // encodeDocument()
-  test('test encodeDocument()', () => {
+  // encodeDocument(Array<Object>)
+  test('test encodeDocument(input: Array<Object>)', () => {
     const user = [
       {
         _id: new ObjectId('ffffffffffffffffffffffff'),
@@ -58,6 +58,20 @@ describe('encrypt document', () => {
         username: 'bar',
       },
     ];
+
+    expect(encodeDocument(user)).toStrictEqual(expected);
+  });
+
+  // encodeDocument(Object{_ids:Array<ObjectId>})
+  test('test encodeDocument(input: {_ids: Array<ObjectId>})', () => {
+    const user = {
+      _ids: [new ObjectId('ffffffffffffffffffffffff'), new ObjectId('000000000000000000000000')],
+      username: 'foo',
+    };
+    const expected = {
+      Ids: ['BxLnqL8Z7AiQDM5DA2ox', '4qxrK3r1kNCyB2j82P6V'],
+      username: 'foo',
+    };
 
     expect(encodeDocument(user)).toStrictEqual(expected);
   });
