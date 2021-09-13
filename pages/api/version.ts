@@ -15,8 +15,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
  * {
  *     "apiVersion": "0.1.0"
  * }
- *
- *
  */
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
