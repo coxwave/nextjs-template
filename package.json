@@ -5,7 +5,8 @@
     "build": "next build",
     "lint": "next lint",
     "start": "next start",
-    "test": "jest --detectOpenHandles --forceExit"
+    "test": "jest --detectOpenHandles --forceExit",
+    "clean": "./clean.sh"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.22.0",
