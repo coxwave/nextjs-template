@@ -36,8 +36,8 @@ describe('encrypt document', () => {
     expect(encodeDocument(user)).toStrictEqual(expected);
   });
 
-  // encodeDocuments()
-  test('test encodeDocuments()', () => {
+  // encodeDocument()
+  test('test encodeDocument()', () => {
     const user = [
       {
         _id: new ObjectId('ffffffffffffffffffffffff'),

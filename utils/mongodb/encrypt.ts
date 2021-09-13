@@ -42,10 +42,6 @@ export function encodeDocument<U = any>(input: any): U {
   return input;
 }
 
-export function encodeDocuments<U>(input: Array<any>): Array<U> {
-  return input.map((v) => encodeDocument<U>(v));
-}
-
 // class EncrypedeId {
 //   Id: string;
 
