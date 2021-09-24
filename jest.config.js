@@ -10,4 +10,5 @@ module.exports = {
     '@utils/(.*)': '<rootDir>/utils/$1',
     '@repository/(.*)': '<rootDir>/repository/$1',
   },
+  moduleDirectories: ['node_modules'],
 };
