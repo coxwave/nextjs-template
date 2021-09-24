@@ -1,5 +1,5 @@
 import { ObjectId } from 'bson';
-import { decodeId, encodeDocument, encodeId } from './encrypt';
+import { decodeId, encodeDocument, encodeId } from '@utils/mongodb/encrypt';
 
 describe('encrypt document', () => {
   beforeEach(() => {
