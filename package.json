@@ -5,9 +5,9 @@
     "build": "next build",
     "lint": "next lint",
     "start": "next start",
-    "test": "yarn lint && jest --verbose --runInBand --forceExit",
-    "clean": "./clean.sh && yarn install",
-    "docs": "apidoc -i ./pages/api/ -o ./public/docs/"
+    "test": "make test",
+    "clean": "make clean",
+    "docs": "make docs"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.22.0",
