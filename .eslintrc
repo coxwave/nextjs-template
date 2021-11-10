@@ -24,12 +24,12 @@
             "position": "after"
           },
           {
-            "pattern": "types/**",
+            "pattern": "@src/backend/**",
             "group": "internal",
             "position": "after"
           },
           {
-            "pattern": "pages/**",
+            "pattern": "@src/frontend/**",
             "group": "internal",
             "position": "after"
           }

@@ -1,7 +1,7 @@
 import { ObjectId } from 'bson';
 import { Collection, Db, InsertOneOptions, ReplaceOptions, UpdateOptions } from 'mongodb';
 
-import { UserBson, UserBsonOptionalId } from '@src/model/user';
+import { UserBson, UserBsonOptionalId } from '@src/backend/model/user';
 
 import { Scope } from '.';
 

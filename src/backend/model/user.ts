@@ -1,7 +1,7 @@
 import { ObjectId } from 'bson';
 import { OptionalId } from 'mongodb';
 
-import { EncodeId } from 'types';
+import { EncodeId } from '@src/types';
 
 export type UserBson = {
   _id: ObjectId;

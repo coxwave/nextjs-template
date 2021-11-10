@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 
-const Loading = dynamic(() => import('@src/components/dynamic/Loading'), {
+const Loading = dynamic(() => import('./Loading'), {
   loading: () => <p>loading...</p>,
 });
 

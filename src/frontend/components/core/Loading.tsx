@@ -1,6 +1,6 @@
 import Lottie from 'lottie-react';
 
-import spinner from '@src/lottie/spinner.json';
+import spinner from '@assets/spinner.json';
 
 export default function Loading() {
   return (
