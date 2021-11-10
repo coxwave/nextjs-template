@@ -10,8 +10,8 @@ import {
   UserBsonOptionalId,
   UserBsonProfile,
   UserBsonWithoutCredentials,
-} from '@src/model/user';
-import { UserRepository } from '@src/repository/user';
+} from '@src/backend/model/user';
+import { UserRepository } from '@src/backend/repository/user';
 import {
   GithubOauthLoginParam,
   GithubOauthLoginResult,

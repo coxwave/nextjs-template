@@ -3,7 +3,7 @@
  * It catches any kinds of error, and send it to client as a Custom JSON format
  */
 
-import { withErrorHandler } from '@utils/with-error-handler';
+import { withErrorHandler } from '@src/utils/with-error-handler';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 

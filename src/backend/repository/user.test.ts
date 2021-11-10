@@ -1,8 +1,8 @@
 import { ObjectId } from 'bson';
 import { MongoClient } from 'mongodb';
 
-import { UserRepository } from '@src/repository/user';
-import { loadTestConnection, loadTestDb } from '@src/tests';
+import { UserRepository } from '@src/backend/repository/user';
+import { loadTestConnection, loadTestDb } from '@src/backend/tests';
 
 const has = Object.prototype.hasOwnProperty; // cache the lookup once, in module scope.
 

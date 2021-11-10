@@ -1,4 +1,4 @@
-import got from 'got/dist/source';
+import got from 'got';
 import Joi from 'joi';
 
 // GET https://github.com/login/oauth/authorize
