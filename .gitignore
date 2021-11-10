@@ -35,9 +35,3 @@ yarn-error.log*
 
 # vscode
 .vscode
-
-# Template
-Template
-template.*
-*/**/test.*
-test/
