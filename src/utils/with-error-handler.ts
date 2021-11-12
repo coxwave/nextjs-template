@@ -1,7 +1,8 @@
+import { StatusCodes } from 'http-status-codes';
 import Joi from 'joi';
 import { isResSent } from 'next/dist/shared/lib/utils';
 
-import ERRORS, { CustomError } from '@src/defines/errors';
+import { ApiError } from '@src/defines/errors';
 
 import { isProd } from './env';
 
@@ -13,24 +14,28 @@ export function withErrorHandler(handler: NextApiHandler) {
       await handler(req, res);
 
       if (!isResSent(res)) {
-        res.status(405).json(ERRORS.METHOD_NOT_EXISTS());
+        throw new ApiError('METHOD_NOT_ALLOWED');
       }
     } catch (err) {
       if (isResSent(res)) {
         return;
       }
 
+      const withDetails = !isProd();
+
       if (Joi.isError(err)) {
-        return res.status(400).json(ERRORS.VALIDATION_FAILED(err.message));
+        const error = new ApiError('VALIDATION_ERROR', err.message || undefined);
+
+        return res.status(error.statusCode).json(error.toJson(withDetails));
       }
 
-      if (err instanceof CustomError) {
-        return res.status(err.statusCode).json(err);
+      if (ApiError.isApiError(err)) {
+        return res.status(err.statusCode).json(err.toJson(withDetails));
       }
 
       return res
-        .status(res.statusCode >= 400 ? res.statusCode : 500)
-        .json(ERRORS.INTERNAL_SERVER_ERROR(!isProd() ? (err as Error).message : undefined));
+        .status(res.statusCode >= 400 ? res.statusCode : StatusCodes.INTERNAL_SERVER_ERROR)
+        .json(new ApiError('INTERNAL_SERVER_ERROR', (err as Error).message).toJson(withDetails));
     }
   };
 

@@ -19,6 +19,7 @@
     "crypto-random-string": "3.3.0",
     "got": "11.8.2",
     "hashids": "2.2.8",
+    "http-status-codes": "2.1.4",
     "joi": "17.4.2",
     "jsonwebtoken": "8.5.1",
     "ky": "0.28.5",
