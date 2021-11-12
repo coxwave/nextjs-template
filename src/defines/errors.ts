@@ -54,12 +54,12 @@ export class ApiError extends Error {
     this.statusCode = statusCode ?? ERRORS[name].statusCode;
   }
 
-  static isApiError(x: any): x is ApiError {
+  static isApiError(err: any): err is ApiError {
     return (
-      x.code !== undefined &&
-      x.statusCode !== undefined &&
-      x.name !== undefined &&
-      x.message !== undefined
+      err.code !== undefined &&
+      err.statusCode !== undefined &&
+      err.name !== undefined &&
+      err.message !== undefined
     );
   }
 
