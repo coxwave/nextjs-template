@@ -1,40 +1,74 @@
-// import Joi, { number } from 'joi';
+import { StatusCodes } from 'http-status-codes';
 
-// const ERROR_VARIANTS = ['CE'] as const;
-// type ErrorCode = `${typeof ERROR_VARIANTS[number]}${number}`;
-
-export class CustomError extends Error {
-  code: string;
-  statusCode: number;
-  name: string;
-  message: string;
-
-  constructor(code: string, statusCode: number, name: string, message: string) {
-    super();
-    this.code = code;
-    this.statusCode = statusCode;
-    this.name = name;
-    this.message = message;
-  }
-}
-
+// Define defaults
 const ERRORS = {
-  // Common Error
-  INTERNAL_SERVER_ERROR: (message?: string) =>
-    new CustomError('CE000', 500, 'Internal server error', message ?? 'Unhandled error occured.'),
-  METHOD_NOT_EXISTS: (message?: string) =>
-    new CustomError(
-      'CE001',
-      400,
-      'Bad request method',
-      message ?? 'Check request host and/or method.',
-    ),
-  VALIDATION_FAILED: (message?: string) =>
-    new CustomError('CE002', 400, 'Validation failed', message ?? "Check your request's validity."),
-  INVALID_TOKEN: (message?: string) =>
-    new CustomError('CE003', 401, 'Invalid token', message ?? 'Invalid Token'),
-  TOKEN_EXPIRED: (message?: string) =>
-    new CustomError('CE004', 401, 'Token expired', message ?? 'Token expired'),
+  // Common Errors
+  INTERNAL_SERVER_ERROR: {
+    name: 'InternalServerError',
+    code: 'CE000',
+    statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+    message: 'Unhandled error occured.',
+  },
+  METHOD_NOT_ALLOWED: {
+    name: 'MethodNotAllowed',
+    code: 'CE001',
+    statusCode: StatusCodes.METHOD_NOT_ALLOWED,
+    message: 'Method is not allowed.',
+  },
+  VALIDATION_ERROR: {
+    name: 'ValidationError',
+    code: 'CE002',
+    statusCode: StatusCodes.BAD_REQUEST,
+    message: 'Invalid data in query string or request body. Please check your request.',
+  },
+
+  // Auth Errors (authentication or authorization)
+  INVALID_TOKEN: {
+    name: 'InvalidToken',
+    code: 'AE001',
+    statusCode: StatusCodes.UNAUTHORIZED,
+    message: 'Your token is not valid.',
+  },
+  TOKEN_EXPIRED: {
+    name: 'TokenExpired',
+    code: 'AE002',
+    statusCode: StatusCodes.UNAUTHORIZED,
+    message: 'The token has been expired.',
+  },
 } as const;
 
-export default ERRORS;
+type ErrorNames = keyof typeof ERRORS;
+type ErrorCodes = typeof ERRORS[keyof typeof ERRORS]['code'];
+
+export class ApiError extends Error {
+  name: ErrorNames;
+  code: ErrorCodes;
+  message: string;
+  statusCode: StatusCodes;
+
+  constructor(name: ErrorNames, message?: string, statusCode?: StatusCodes) {
+    super();
+    this.name = name;
+    this.code = ERRORS[name].code;
+    this.message = message ?? ERRORS[name].message ?? 'Message was not set';
+    this.statusCode = statusCode ?? ERRORS[name].statusCode;
+  }
+
+  static isApiError(err: any): err is ApiError {
+    return (
+      err.code !== undefined &&
+      err.statusCode !== undefined &&
+      err.name !== undefined &&
+      err.message !== undefined
+    );
+  }
+
+  toJson(withDetails = false) {
+    return {
+      name: this.name,
+      code: this.code,
+      message: withDetails ? this.message : undefined,
+      stack: withDetails ? this.stack : undefined,
+    };
+  }
+}
