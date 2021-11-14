@@ -24,15 +24,6 @@ const nextConfig = {
       },
     ];
   },
-  async rewrites() {
-    return [
-      {
-        source: '/docs',
-        destination: '/docs/index.html',
-        permanent: true,
-      },
-    ];
-  },
 };
 
 module.exports = nextConfig;
