@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "make build",
     "lint": "next lint",
     "start": "next start",
     "test": "make test",

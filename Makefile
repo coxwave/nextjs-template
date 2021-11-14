@@ -1,5 +1,5 @@
-test: check-env
-	yarn
+test:
+	yarn install
 	jest --verbose --runInBand --forceExit --config ./jest.config.js 
 
 docs:
@@ -8,3 +8,7 @@ docs:
 clean:
 	@rm -rf ./node_modules
 	@rm -rf ./.next
+	yarn install
+
+build: docs
+	./node_modules/next/dist/bin/next build
