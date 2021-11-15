@@ -12,4 +12,5 @@ module.exports = {
   globalTeardown: './jest/teardown.js',
   testEnvironment: './jest/mongo-environment.js',
   collectCoverage: true,
+  collectCoverageFrom: ['<rootDir>/src/{backend,defines,pages,utils}/**/*.ts'],
 };
