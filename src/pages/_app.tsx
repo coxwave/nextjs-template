@@ -63,6 +63,18 @@ export default function App({ Component, pageProps }: AppProps) {
             href: '/assets/favicon.ico',
           },
           {
+            rel: 'icon',
+            type: 'image/png',
+            sizes: '16x16',
+            href: '/assets/favicon-16x16.png',
+          },
+          {
+            rel: 'icon',
+            type: 'image/png',
+            sizes: '32x32',
+            href: '/assets/favicon-32x32.png',
+          },
+          {
             rel: 'apple-touch-icon',
             href: '/assets/apple-touch-icon.png',
             sizes: '180x180',
