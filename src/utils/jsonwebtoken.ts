@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-import ERRORS from '@src/defines/errors';
+import { ApiError } from '@src/defines/errors';
 
 import { getEnv } from './env';
 
@@ -29,10 +29,10 @@ export const verifyToken = <T extends object = any>(
         return jwt.decode(token) as jwt.JwtPayload as T;
       }
 
-      throw ERRORS.TOKEN_EXPIRED('TOKEN EXPIRED');
+      throw new ApiError('TOKEN_EXPIRED', 'Your AccessToken has been expired.');
     }
 
-    throw ERRORS.INVALID_TOKEN('INVALID TOKEN');
+    throw new ApiError('INVALID_TOKEN');
   }
 };
 
