@@ -41,7 +41,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Script src="/js/redirectIE.js" strategy="beforeInteractive" />
       <DefaultSeo
-        title="next-template"
+        title="nextjs-template"
         description="template for full-stack nextjs application made by Coxwave"
         additionalLinkTags={[
           {
@@ -55,7 +55,7 @@ export default function App({ Component, pageProps }: AppProps) {
           },
           {
             rel: 'manifest',
-            href: '/assets/site.manifest',
+            href: '/assets/site.webmanifest',
           },
         ]}
       />
