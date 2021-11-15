@@ -6,7 +6,7 @@
   }
 
   body {
-    @apply relative h-full text-gray-900 text-base;
+    @apply relative h-full text-gray-900 text-base font-inter;
   }
 
   #__next {
