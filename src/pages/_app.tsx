@@ -41,8 +41,8 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Script src="/js/redirectIE.js" strategy="beforeInteractive" />
       <DefaultSeo
-        title="nextjs-template"
-        description="template for full-stack nextjs application made by Coxwave"
+        title="NextJS App"
+        description="This page has been created by the template for full-stack nextjs application made by Coxwave"
         additionalLinkTags={[
           {
             rel: 'icon',
@@ -60,11 +60,9 @@ export default function App({ Component, pageProps }: AppProps) {
         ]}
       />
       <SWRConfig value={{ fetcher: fetcherSWR }}>
-        {/* <ManagedUIContext> */}
         <CommonLayout>
           <Component {...pageProps} />
         </CommonLayout>
-        {/* </ManagedUIContext> */}
       </SWRConfig>
     </>
   );

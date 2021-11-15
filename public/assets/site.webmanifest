@@ -1,6 +1,6 @@
 {
-  "name": "next-template",
-  "short_name": "Next Template",
+  "name": "NextJS App",
+  "short_name": "NextJS App",
   "icons": [
     {
       "src": "/asets/android-chrome-192x192.png",
