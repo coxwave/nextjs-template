@@ -11,4 +11,4 @@ clean:
 	yarn install
 
 build: docs
-	./node_modules/next/dist/bin/next build
+	next build
