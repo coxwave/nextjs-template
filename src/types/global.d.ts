@@ -1,1 +1,9 @@
-type OurDate = Date | string;
+import { MongoClient } from 'mongodb';
+
+declare global {
+  type OurDate = Date | string;
+
+  var _mongoClientPromise: Promise<MongoClient> | undefined;
+  var __MONGO_URI__: string | undefined;
+  var __MONGO_DB_NAME__: string | undefined;
+}
