@@ -6,6 +6,10 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      fontFamily: {
+        // 'Inter' fontFamily was imported in _document.tsx
+        inter: "'Inter'",
+      },
       colors: {
         // You can add more colors here.
         sky: colors.sky,
