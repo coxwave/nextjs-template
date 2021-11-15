@@ -1,6 +1,7 @@
 import '@assets/main.css';
 import 'nprogress/nprogress.css';
 
+import { DefaultSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
 import NProgress from 'nprogress';
@@ -39,6 +40,25 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Script src="/js/redirectIE.js" strategy="beforeInteractive" />
+      <DefaultSeo
+        title="next-template"
+        description="template for full-stack nextjs application made by Coxwave"
+        additionalLinkTags={[
+          {
+            rel: 'icon',
+            href: '/assets/favicon.ico',
+          },
+          {
+            rel: 'apple-touch-icon',
+            href: '/assets/apple-touch-icon.png',
+            sizes: '180x180',
+          },
+          {
+            rel: 'manifest',
+            href: '/assets/site.manifest',
+          },
+        ]}
+      />
       <SWRConfig value={{ fetcher: fetcherSWR }}>
         {/* <ManagedUIContext> */}
         <CommonLayout>
