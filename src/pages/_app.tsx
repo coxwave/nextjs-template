@@ -43,6 +43,20 @@ export default function App({ Component, pageProps }: AppProps) {
       <DefaultSeo
         title="NextJS App"
         description="This page has been created by the template for full-stack nextjs application made by Coxwave"
+        openGraph={{
+          type: 'website',
+          title: 'NextJS App',
+          description:
+            'This page has been created by the template for full-stack nextjs application made by Coxwave',
+          images: [
+            {
+              url: '/assets/open_graph.jpg',
+              width: 1200,
+              height: 630,
+              alt: 'NextJS Template',
+            },
+          ],
+        }}
         additionalLinkTags={[
           {
             rel: 'icon',
