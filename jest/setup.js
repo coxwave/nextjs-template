@@ -12,6 +12,7 @@ module.exports = async () => {
   loadEnvConfig(process.cwd());
   process.env.HASHIDS_KEY = 'foo';
 
+  console.log('Starting mongod');
   const mongoServer = await MongoMemoryServer.create();
 
   if (mongoServer.state !== MongoMemoryServerStates.running) {

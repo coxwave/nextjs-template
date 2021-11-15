@@ -1,6 +1,6 @@
 test:
-	yarn install
-	jest --verbose --runInBand --forceExit --config ./jest.config.js 
+	yarn
+	jest --forceExit --config ./jest.config.js --maxWorkers=8 --detectOpenHandles
 
 docs:
 	apidoc -i ./src/pages/ -o ./public/docs/ -t ./apidoc-template

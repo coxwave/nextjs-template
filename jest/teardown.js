@@ -1,3 +1,6 @@
 module.exports = async function () {
-  await global.__MONGOD__.stop();
+  if (global.__MONGOD__) {
+    console.log('Stopping mongod');
+    await global.__MONGOD__.stop();
+  }
 };
