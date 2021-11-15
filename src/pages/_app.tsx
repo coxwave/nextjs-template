@@ -1,6 +1,7 @@
 import '@assets/main.css';
 import 'nprogress/nprogress.css';
 
+import { DefaultSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
 import NProgress from 'nprogress';
@@ -39,12 +40,55 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Script src="/js/redirectIE.js" strategy="beforeInteractive" />
+      <DefaultSeo
+        title="NextJS App"
+        description="This page has been created by the template for full-stack nextjs application made by Coxwave"
+        openGraph={{
+          type: 'website',
+          title: 'NextJS App',
+          description:
+            'This page has been created by the template for full-stack nextjs application made by Coxwave',
+          images: [
+            {
+              url: '/assets/open_graph.jpg',
+              width: 1200,
+              height: 630,
+              alt: 'NextJS Template',
+            },
+          ],
+        }}
+        additionalLinkTags={[
+          {
+            rel: 'icon',
+            href: '/assets/favicon.ico',
+          },
+          {
+            rel: 'icon',
+            type: 'image/png',
+            sizes: '16x16',
+            href: '/assets/favicon-16x16.png',
+          },
+          {
+            rel: 'icon',
+            type: 'image/png',
+            sizes: '32x32',
+            href: '/assets/favicon-32x32.png',
+          },
+          {
+            rel: 'apple-touch-icon',
+            href: '/assets/apple-touch-icon.png',
+            sizes: '180x180',
+          },
+          {
+            rel: 'manifest',
+            href: '/assets/site.webmanifest',
+          },
+        ]}
+      />
       <SWRConfig value={{ fetcher: fetcherSWR }}>
-        {/* <ManagedUIContext> */}
         <CommonLayout>
           <Component {...pageProps} />
         </CommonLayout>
-        {/* </ManagedUIContext> */}
       </SWRConfig>
     </>
   );
