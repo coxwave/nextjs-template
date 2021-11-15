@@ -1,4 +1,4 @@
-import { withErrorHandler } from '@src/utils/with-error-handler';
+import { NextApiBuilder } from '@src/backend/api-wrapper';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -23,4 +23,4 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default withErrorHandler(handler);
+export default new NextApiBuilder(handler).build();
