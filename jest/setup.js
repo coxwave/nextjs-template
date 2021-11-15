@@ -8,6 +8,10 @@ const { MongoMemoryServerStates } = require('mongodb-memory-server-core/lib/Mong
 const globalConfigPath = path.join(__dirname, 'globalConfig.json');
 
 module.exports = async () => {
+  // Test Environment
+  loadEnvConfig(process.cwd());
+  process.env.HASHIDS_KEY = 'foo';
+
   const mongoServer = await MongoMemoryServer.create();
 
   if (mongoServer.state !== MongoMemoryServerStates.running) {
@@ -15,15 +19,11 @@ module.exports = async () => {
   }
 
   const mongoConfig = {
-    mongoDBName: 'test',
+    mongoDBName: process.env.TEST_DB_NAME || 'test',
     mongoUri: mongoServer.getUri(),
   };
 
   fs.writeFileSync(globalConfigPath, JSON.stringify(mongoConfig));
 
   global.__MONGOD__ = mongoServer;
-
-  // Test Environment
-  loadEnvConfig(process.cwd());
-  process.env.HASHIDS_KEY = 'foo';
 };
