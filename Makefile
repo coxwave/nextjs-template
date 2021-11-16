@@ -1,6 +1,6 @@
 test:
 	yarn
-  jest --config ./jest.config.js --maxWorkers=8 --detectOpenHandles
+	jest --config ./jest.config.js --maxWorkers=8 --detectOpenHandles
 
 docs:
 	apidoc -i ./src/pages/ -o ./public/docs/ -t ./apidoc-template
