@@ -1,35 +1,37 @@
-import { v4 } from 'uuid';
+import cryptoRandomString from 'crypto-random-string';
 
 import { MONGODB_NAME } from '@src/defines/env';
 
-import { connectMongo, MongoDB } from './connect';
+import { connectMongo } from './connect';
+
+import type { MongoDB } from './connect';
 
 describe('mongodb connection', () => {
-  let db: MongoDB;
+  let mongo: MongoDB;
 
   beforeAll(async () => {
-    db = await connectMongo();
+    mongo = await connectMongo();
   });
 
   afterAll(async () => {
-    await db.client.close();
+    await mongo.client.close();
   });
 
   it('Check db_name', async () => {
-    expect(db.client.options.dbName).toBe(MONGODB_NAME);
-    expect(db.inner.databaseName).toBe(MONGODB_NAME);
+    expect(mongo.client.options.dbName).toBe(MONGODB_NAME);
+    expect(mongo.inner.databaseName).toBe(MONGODB_NAME);
   });
 
   it('Create and drop collection', async () => {
-    const collectionName = v4();
+    const collectionName = cryptoRandomString({ length: 10, type: 'alphanumeric' });
 
-    const result = await db.inner.createCollection(collectionName);
+    const result = await mongo.inner.createCollection(collectionName);
     expect(result.collectionName).toBe(collectionName);
 
-    const success = await db.inner.dropCollection(collectionName);
+    const success = await mongo.inner.dropCollection(collectionName);
     expect(success).toBe(true);
 
-    const collections = await db.inner.listCollections().toArray();
+    const collections = await mongo.inner.listCollections().toArray();
     expect(collections.findIndex((collection) => collection.name === collectionName)).toBe(-1);
   });
 });

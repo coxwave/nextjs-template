@@ -13,11 +13,9 @@
     "@aws-sdk/client-s3": "3.22.0",
     "@headlessui/react": "1.4.2",
     "@heroicons/react": "1.0.5",
-    "apidoc": "0.29.0",
     "bcrypt": "5.0.1",
     "classnames": "2.3.1",
-    "crypto-random-string": "3.3.0",
-    "got": "11.8.2",
+    "crypto-random-string": "3.3.1",
     "hashids": "2.2.8",
     "http-status-codes": "2.1.4",
     "joi": "17.4.2",
@@ -45,6 +43,7 @@
     "@types/nprogress": "0.2.0",
     "@types/react": "17.0.19",
     "@types/uuid": "8.3.1",
+    "apidoc": "0.50.1",
     "autoprefixer": "10.2.6",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.0",
@@ -54,12 +53,12 @@
     "jest": "27.1.1",
     "jest-environment-node": "27.2.0",
     "mongodb-memory-server": "7.4.3",
+    "node-mocks-http": "1.11.0",
     "postcss": "8.3.6",
     "postcss-focus-visible": "5.0.0",
     "prettier": "2.3.2",
     "tailwindcss": "2.2.14",
     "ts-jest": "27.0.5",
-    "typescript": "4.4.4",
-    "uuid": "8.3.2"
+    "typescript": "4.4.4"
   }
 }
