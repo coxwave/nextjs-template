@@ -6,7 +6,7 @@ export const API_VERSION = '0.1.0';
 
 /**
  *
- * @api {get} /version [Get] /version
+ * @api {get} /api/version  Get API version
  * @apiName GetApiVersion
  * @apiGroup General
  * @apiVersion  0.1.0

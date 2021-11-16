@@ -1,5 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
-import { createRequest, createResponse } from 'node-mocks-http';
+
+import TH from '@src/backend/test-helper';
 
 import { NextApiBuilder } from '.';
 
@@ -32,21 +33,17 @@ describe('NextApiBuilder', () => {
     const apiHandler = apiBuilder.build();
     const wrappedApiHandler = wrappedApiBuilder.build();
 
-    const req1 = createRequest();
-    const res1 = createResponse();
-    const req2 = createRequest();
-    const res2 = createResponse();
+    const { statusCode: statusCode1, jsonData: jsonData1 } = await TH.testApiHandler<{
+      hello: string;
+    }>(apiHandler);
+    const { statusCode: statusCode2, jsonData: jsonData2 } = await TH.testApiHandler<{
+      hello: string;
+    }>(wrappedApiHandler);
 
-    await apiHandler(req1, res1);
-    await wrappedApiHandler(req2, res2);
-
-    const body1 = res1._getJSONData() as { hello: string };
-    const body2 = res2._getJSONData() as { hello: string };
-
-    expect(res1._getStatusCode()).toBe(StatusCodes.OK);
-    expect(res2._getStatusCode()).toBe(StatusCodes.OK);
-    expect(body1.hello).toEqual('world');
-    expect(body2.hello).toEqual('changed!');
+    expect(statusCode1).toBe(StatusCodes.OK);
+    expect(statusCode2).toBe(StatusCodes.OK);
+    expect(jsonData1?.hello).toEqual('world');
+    expect(jsonData2?.hello).toEqual('changed!');
   });
 
   it('Should not add duplicated wrappers', async () => {

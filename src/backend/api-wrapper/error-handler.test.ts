@@ -1,13 +1,13 @@
 import { StatusCodes } from 'http-status-codes';
 import Joi from 'joi';
-import { createRequest, createResponse } from 'node-mocks-http';
 
 import { ApiError, ApiErrorJson } from '@src/defines/errors';
+
+import TH from '../test-helper';
 
 import { NextApiBuilder } from '.';
 
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
-import type { MockRequest, MockResponse } from 'node-mocks-http';
 
 const mockHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
@@ -15,13 +15,17 @@ const mockHandler = async (req: NextApiRequest, res: NextApiResponse) => {
       case 'alreadySent':
         res.status(StatusCodes.NO_CONTENT).end();
         throw new Error('Should never see me!');
+
       case 'unexpectedError':
         throw new Error('Unexpected Error');
+
       case 'throwWithStatusCode':
         res.status(StatusCodes.NOT_ACCEPTABLE);
         throw new Error('Not Acceptable Error');
+
       case 'apiError':
         throw new ApiError('TOKEN_EXPIRED');
+
       case 'validationError':
         await Joi.string().valid('shouldBeDifferent').validateAsync(req.query.error);
     }
@@ -33,89 +37,71 @@ const mockHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 describe('Default wrapper (error-handler)', () => {
   let apiHandler: NextApiHandler;
 
-  let req: MockRequest<NextApiRequest>;
-  let res: MockResponse<NextApiResponse>;
-
   beforeAll(() => {
     apiHandler = new NextApiBuilder(mockHandler).build();
   });
 
   it('should success', async () => {
-    req = createRequest({ method: 'GET' });
-    res = createResponse();
+    const { statusCode, jsonData } = await TH.testApiHandler<{ hello: string }>(apiHandler, {
+      req: { method: 'GET' },
+    });
 
-    await apiHandler(req, res);
-
-    const body = res._getJSONData() as { hello: string };
-
-    expect(res._getStatusCode()).toBe(StatusCodes.OK);
-    expect(body.hello).toEqual('world');
+    expect(statusCode).toBe(StatusCodes.OK);
+    expect(jsonData?.hello).toEqual('world');
   });
 
   it('should success if handler throws after sending a response', async () => {
-    req = createRequest({ method: 'GET', query: { error: 'alreadySent' } });
-    res = createResponse();
+    const { statusCode } = await TH.testApiHandler(apiHandler, {
+      method: 'GET',
+      query: { error: 'alreadySent' },
+    });
 
-    await apiHandler(req, res);
-
-    expect(res._getStatusCode()).toBe(StatusCodes.NO_CONTENT);
-    expect(async () => await apiHandler(req, res)).not.toThrowError();
+    expect(statusCode).toBe(StatusCodes.NO_CONTENT);
   });
 
   it('should fail - method not allowed', async () => {
-    req = createRequest({ method: 'POST' });
-    res = createResponse();
+    const { statusCode } = await TH.testApiHandler(apiHandler, { method: 'POST' });
 
-    await apiHandler(req, res);
-
-    expect(res._getStatusCode()).toBe(StatusCodes.METHOD_NOT_ALLOWED);
+    expect(statusCode).toBe(StatusCodes.METHOD_NOT_ALLOWED);
   });
 
   it('should fail - unexpected error', async () => {
-    req = createRequest({ method: 'GET', query: { error: 'unexpectedError' } });
-    res = createResponse();
+    const { statusCode, jsonData } = await TH.testApiHandler<ApiErrorJson>(apiHandler, {
+      method: 'GET',
+      query: { error: 'unexpectedError' },
+    });
 
-    await apiHandler(req, res);
-
-    const body = res._getJSONData() as ApiErrorJson;
-
-    expect(res._getStatusCode()).toBe(StatusCodes.INTERNAL_SERVER_ERROR);
-    expect(body.code).toStrictEqual(new ApiError('INTERNAL_SERVER_ERROR').toJson().code);
+    expect(statusCode).toBe(StatusCodes.INTERNAL_SERVER_ERROR);
+    expect(jsonData?.code).toStrictEqual(new ApiError('INTERNAL_SERVER_ERROR').toJson().code);
   });
 
   it('should fail - throw error with statusCode', async () => {
-    req = createRequest({ method: 'GET', query: { error: 'throwWithStatusCode' } });
-    res = createResponse();
+    const { statusCode, jsonData } = await TH.testApiHandler<ApiErrorJson>(apiHandler, {
+      method: 'GET',
+      query: { error: 'throwWithStatusCode' },
+    });
 
-    await apiHandler(req, res);
-
-    const body = res._getJSONData() as ApiErrorJson;
-
-    expect(res._getStatusCode()).toBe(StatusCodes.NOT_ACCEPTABLE);
-    expect(body.code).toStrictEqual(new ApiError('INTERNAL_SERVER_ERROR').toJson().code);
+    expect(statusCode).toBe(StatusCodes.NOT_ACCEPTABLE);
+    expect(jsonData?.code).toStrictEqual(new ApiError('INTERNAL_SERVER_ERROR').toJson().code);
   });
 
   it('should fail - validation error', async () => {
-    req = createRequest({ method: 'GET', query: { error: 'validationError' } });
-    res = createResponse();
+    const { statusCode, jsonData } = await TH.testApiHandler<ApiErrorJson>(apiHandler, {
+      method: 'GET',
+      query: { error: 'validationError' },
+    });
 
-    await apiHandler(req, res);
-
-    const body = res._getJSONData() as ApiErrorJson;
-
-    expect(res._getStatusCode()).toBe(StatusCodes.BAD_REQUEST);
-    expect(body.code).toStrictEqual(new ApiError('VALIDATION_ERROR').toJson().code);
+    expect(statusCode).toBe(StatusCodes.BAD_REQUEST);
+    expect(jsonData?.code).toStrictEqual(new ApiError('VALIDATION_ERROR').toJson().code);
   });
 
   it('should fail - api error', async () => {
-    req = createRequest({ method: 'GET', query: { error: 'apiError' } });
-    res = createResponse();
+    const { statusCode, jsonData } = await TH.testApiHandler<ApiErrorJson>(apiHandler, {
+      method: 'GET',
+      query: { error: 'apiError' },
+    });
 
-    await apiHandler(req, res);
-
-    const body = res._getJSONData() as ApiErrorJson;
-
-    expect(res._getStatusCode()).toBe(StatusCodes.UNAUTHORIZED);
-    expect(body.code).toStrictEqual(new ApiError('TOKEN_EXPIRED').toJson().code);
+    expect(statusCode).toBe(StatusCodes.UNAUTHORIZED);
+    expect(jsonData?.code).toStrictEqual(new ApiError('TOKEN_EXPIRED').toJson().code);
   });
 });

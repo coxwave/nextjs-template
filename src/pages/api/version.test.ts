@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
-import { createRequest, createResponse } from 'node-mocks-http';
 
+import TH from '@src/backend/test-helper';
 import { connectMongo } from '@src/utils/mongodb/connect';
 import type { MongoDB } from '@src/utils/mongodb/connect';
 
@@ -18,23 +18,17 @@ describe('/api/version', () => {
   });
 
   it('GET /api/version -> Get api version', async () => {
-    const req = createRequest({ method: 'GET' });
-    const res = createResponse();
+    const { statusCode, jsonData } = await TH.testApiHandler<{ apiVersion: string }>(apiHandler, {
+      method: 'GET',
+    });
 
-    await apiHandler(req, res);
-
-    const body = res._getJSONData() as { apiVersion: string };
-
-    expect(res._getStatusCode()).toBe(StatusCodes.OK);
-    expect(body.apiVersion).toEqual(API_VERSION);
+    expect(statusCode).toBe(StatusCodes.OK);
+    expect(jsonData?.apiVersion).toEqual(API_VERSION);
   });
 
   it('POST /api/version -> method not allowed', async () => {
-    const req = createRequest({ method: 'POST' });
-    const res = createResponse();
+    const { statusCode } = await TH.testApiHandler(apiHandler, { method: 'POST' });
 
-    await apiHandler(req, res);
-
-    expect(res._getStatusCode()).toBe(StatusCodes.METHOD_NOT_ALLOWED);
+    expect(statusCode).toBe(StatusCodes.METHOD_NOT_ALLOWED);
   });
 });
