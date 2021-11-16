@@ -23,6 +23,8 @@ module.exports = async () => {
     mongoDBName: process.env.TEST_DB_NAME || 'test',
     mongoUri: mongoServer.getUri(),
   };
+  process.env.MONGODB_URI = mongoConfig.mongoUri;
+  process.env.MONGODB_NAME = mongoConfig.mongoDBName;
 
   fs.writeFileSync(globalConfigPath, JSON.stringify(mongoConfig));
 

@@ -1,4 +1,4 @@
-import { MONGODB_NAME } from '@src/defines/env';
+import { MONGODB_NAME } from '../env';
 
 import clientPromise from '.';
 

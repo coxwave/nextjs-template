@@ -10,7 +10,7 @@ describe('tests for utils/env.ts', () => {
   it('Should not throw an error in test', () => {
     const envNameWhichNeverLikelyExists = 'IT_NEVER_EXISTS';
 
-    expect(() => getEnv(envNameWhichNeverLikelyExists)).not.toThrowError();
-    expect(getEnv(envNameWhichNeverLikelyExists)).toBe('');
+    expect(() => getEnv(envNameWhichNeverLikelyExists as never)).not.toThrowError();
+    expect(getEnv(envNameWhichNeverLikelyExists as never)).toBe('');
   });
 });

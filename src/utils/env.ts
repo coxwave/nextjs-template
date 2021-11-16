@@ -1,4 +1,6 @@
-export const getEnv: (name: string) => string = (name: string) => {
+const ENVs = ['JWT_SECRET', 'HASHIDS_KEY', 'MONGODB_URI', 'MONGODB_NAME'] as const;
+
+export const getEnv: (name: typeof ENVs[number]) => string = (name: string) => {
   const val = process.env[name];
   if (val !== undefined) {
     return val;
@@ -10,6 +12,11 @@ export const getEnv: (name: string) => string = (name: string) => {
 
   return '';
 };
+
+export const JWT_SECRET = getEnv('JWT_SECRET');
+export const HASHIDS_KEY = getEnv('HASHIDS_KEY');
+export const MONGODB_URI = getEnv('MONGODB_URI');
+export const MONGODB_NAME = getEnv('MONGODB_NAME');
 
 export const isTest: () => boolean = () => {
   return process.env.NODE_ENV === 'test';

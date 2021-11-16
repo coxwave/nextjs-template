@@ -1,7 +1,6 @@
 import { MongoClient, MongoClientOptions } from 'mongodb';
 
-import { MONGODB_URI } from '@src/defines/env';
-import { isDev, isTest } from '@src/utils/env';
+import { isDev, isTest, MONGODB_URI } from '@src/utils/env';
 
 const options: MongoClientOptions = {
   ignoreUndefined: true,

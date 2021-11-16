@@ -2,10 +2,9 @@ import jwt from 'jsonwebtoken';
 
 import { ApiError } from '@src/defines/errors';
 
-import { getEnv } from './env';
+import { JWT_SECRET } from './env';
 
 const JWT_ALGORITHM = 'HS512';
-const JWT_SECRET = getEnv('JWT_SECRET');
 
 interface SignTokenOption {
   expiresIn?: string | number;
