@@ -17,13 +17,15 @@ export const errorHandler: ApiWrapper = (handler: NextApiHandler) => async (req,
     }
   } catch (err) {
     if (isResSent(res)) {
+      // TODO: should we need to take care of broken handler
+      //       after sending a response back to client? 🤔
       return;
     }
 
     const withDetails = !isProd();
 
     if (Joi.isError(err)) {
-      const joiError = new ApiError('VALIDATION_ERROR', err.message || undefined);
+      const joiError = new ApiError('VALIDATION_ERROR', err.message);
 
       return res.status(joiError.statusCode).json(joiError.toJson(withDetails));
     }

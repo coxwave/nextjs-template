@@ -17,7 +17,7 @@ describe('/api/version', () => {
     await mongo.client.close();
   });
 
-  it('GET /api/version (200) -> Get api version', async () => {
+  it('GET /api/version -> Get api version', async () => {
     const req = createRequest({ method: 'GET' });
     const res = createResponse();
 
@@ -27,5 +27,14 @@ describe('/api/version', () => {
 
     expect(res._getStatusCode()).toBe(StatusCodes.OK);
     expect(body.apiVersion).toEqual(API_VERSION);
+  });
+
+  it('POST /api/version -> method not allowed', async () => {
+    const req = createRequest({ method: 'POST' });
+    const res = createResponse();
+
+    await apiHandler(req, res);
+
+    expect(res._getStatusCode()).toBe(StatusCodes.METHOD_NOT_ALLOWED);
   });
 });
