@@ -2,6 +2,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 import { NextApiBuilder } from '@src/backend/api-wrapper';
 
+export const API_VERSION = '0.1.0';
+
 /**
  *
  * @api {get} /version [Get] /version
@@ -20,9 +22,7 @@ import { NextApiBuilder } from '@src/backend/api-wrapper';
  */
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
-    return res.json({
-      apiVersion: '0.1.0',
-    });
+    return res.json({ apiVersion: API_VERSION });
   }
 };
 
