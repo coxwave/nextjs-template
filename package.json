@@ -42,7 +42,6 @@
     "@types/node": "16.11.7",
     "@types/nprogress": "0.2.0",
     "@types/react": "17.0.19",
-    "@types/uuid": "8.3.1",
     "apidoc": "0.29.0",
     "autoprefixer": "10.2.6",
     "eslint": "7.32.0",
