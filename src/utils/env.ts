@@ -1,4 +1,4 @@
-const ENVs = ['JWT_SECRET', 'HASHIDS_KEY', 'MONGODB_URI', 'MONGODB_NAME'] as const;
+import type { EnvironmentVariable } from '@src/defines/env';
 
 export const isTest: () => boolean = () => {
   return process.env.NODE_ENV === 'test';
@@ -12,7 +12,7 @@ export const isProd: () => boolean = () => {
   return process.env.NODE_ENV === 'production';
 };
 
-export const getEnv: (name: typeof ENVs[number]) => string = (name: string) => {
+export const getEnv: (name: EnvironmentVariable) => string = (name: string) => {
   const val = process.env[name];
   if (val !== undefined) {
     return val;
