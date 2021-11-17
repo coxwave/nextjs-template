@@ -13,11 +13,11 @@ export async function connectMongo(): Promise<MongoDB> {
 
 export class MongoDB {
   client: MongoClient;
-  inner: Db;
+  db: Db;
 
-  constructor(client: MongoClient, inner: Db) {
+  constructor(client: MongoClient, db: Db) {
     this.client = client;
-    this.inner = inner;
+    this.db = db;
   }
 
   getClient(): MongoClient {
@@ -25,6 +25,6 @@ export class MongoDB {
   }
 
   getDB(): Db {
-    return this.inner;
+    return this.db;
   }
 }
