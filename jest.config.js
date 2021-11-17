@@ -12,7 +12,7 @@ module.exports = {
   globalTeardown: './jest/teardown.js',
   testEnvironment: './jest/mongo-environment.js',
   collectCoverage: true,
-  collectCoverageFrom: ['<rootDir>/src/{backend,defines,pages}/**/*.ts', '!**/_middleware.ts'],
+  collectCoverageFrom: ['<rootDir>/src/{backend,pages}/**/*.ts', '!**/_middleware.ts'],
   coverageThreshold: {
     global: {
       branches: 80,
