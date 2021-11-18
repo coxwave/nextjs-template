@@ -1,9 +1,30 @@
+import { MONGODB_NAME } from '../env';
+
 import clientPromise from '.';
 
-export const connectMongo = async (dbName: string) => {
-  if (!dbName) {
-    throw new Error('Please define the MONGODB_DB environment variable inside .env.local');
+import type { Db, MongoClient } from 'mongodb';
+
+export async function connectMongo(): Promise<MongoDB> {
+  const client = await clientPromise;
+  const db = client.db(MONGODB_NAME);
+
+  return new MongoDB(client, db);
+}
+
+export class MongoDB {
+  client: MongoClient;
+  db: Db;
+
+  constructor(client: MongoClient, db: Db) {
+    this.client = client;
+    this.db = db;
   }
 
-  return { db: (await clientPromise).db(dbName) };
-};
+  getClient(): MongoClient {
+    return this.client;
+  }
+
+  getDB(): Db {
+    return this.db;
+  }
+}

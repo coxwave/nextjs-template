@@ -1,10 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { withErrorHandler } from '@src/utils/with-error-handler';
+import { NextApiBuilder } from '@src/backend/api-wrapper';
+
+export const API_VERSION = '0.1.0';
 
 /**
  *
- * @api {get} /version [Get] /version
+ * @api {get} /api/version  Get API version
  * @apiName GetApiVersion
  * @apiGroup General
  * @apiVersion  0.1.0
@@ -20,10 +22,8 @@ import { withErrorHandler } from '@src/utils/with-error-handler';
  */
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
-    return res.json({
-      apiVersion: '0.1.0',
-    });
+    return res.json({ apiVersion: API_VERSION });
   }
 };
 
-export default withErrorHandler(handler);
+export default new NextApiBuilder(handler).build();

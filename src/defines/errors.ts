@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 
 // Define defaults
-const ERRORS = {
+export const ERRORS = {
   // Common Errors
   INTERNAL_SERVER_ERROR: {
     name: 'InternalServerError',
@@ -37,21 +37,21 @@ const ERRORS = {
   },
 } as const;
 
-type ErrorNames = keyof typeof ERRORS;
-type ErrorCodes = typeof ERRORS[keyof typeof ERRORS]['code'];
+type ErrorKey = keyof typeof ERRORS;
+type ErrorName = typeof ERRORS[keyof typeof ERRORS]['name'];
+type ErrorCode = typeof ERRORS[keyof typeof ERRORS]['code'];
 
-export class ApiError extends Error {
-  name: ErrorNames;
-  code: ErrorCodes;
+export class ApiError {
+  name: ErrorName;
+  code: ErrorCode;
   message: string;
   statusCode: StatusCodes;
 
-  constructor(name: ErrorNames, message?: string, statusCode?: StatusCodes) {
-    super();
-    this.name = name;
-    this.code = ERRORS[name].code;
-    this.message = message ?? ERRORS[name].message ?? 'Message was not set';
-    this.statusCode = statusCode ?? ERRORS[name].statusCode;
+  constructor(key: ErrorKey, message?: string, statusCode?: StatusCodes) {
+    this.name = ERRORS[key].name;
+    this.code = ERRORS[key].code;
+    this.message = message || ERRORS[key].message;
+    this.statusCode = statusCode ?? ERRORS[key].statusCode;
   }
 
   static isApiError(err: any): err is ApiError {
@@ -63,12 +63,15 @@ export class ApiError extends Error {
     );
   }
 
-  toJson(withDetails = false) {
-    return {
-      name: this.name,
-      code: this.code,
-      message: withDetails ? this.message : undefined,
-      stack: withDetails ? this.stack : undefined,
-    };
+  toJson(withDetails = false): ApiErrorJson {
+    return withDetails
+      ? {
+          name: this.name,
+          code: this.code,
+          message: this.message,
+        }
+      : { name: this.name, code: this.code };
   }
 }
+
+export type ApiErrorJson = Pick<ApiError, 'name' | 'code'> & { message?: string };

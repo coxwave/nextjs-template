@@ -4,7 +4,7 @@ import { EncodeId } from '@src/types';
 import { decodeId, encodeDocument, encodeDocuments, encodeId } from '@src/utils/mongodb/encrypt';
 
 describe('encrypt document', () => {
-  test('test encodeId()', () => {
+  it('test encodeId()', () => {
     // given
     const id = new ObjectId('ffffffffffffffffffffffff');
     const expected = '2KoAnowbOPcAbv5baxg2';
@@ -16,7 +16,7 @@ describe('encrypt document', () => {
     expect(result).toBe(expected);
   });
 
-  test('test decodeId()', () => {
+  it('test decodeId()', () => {
     // given
     const id = '2KoAnowbOPcAbv5baxg2';
     const expected = new ObjectId('ffffffffffffffffffffffff');
@@ -28,7 +28,7 @@ describe('encrypt document', () => {
     expect(result).toStrictEqual(expected);
   });
 
-  test('test encodeDocument: Document', () => {
+  it('test encodeDocument: Document', () => {
     // given
     type Input = { _id: ObjectId; username: string };
     const user: Input = {
@@ -47,7 +47,7 @@ describe('encrypt document', () => {
     });
   });
 
-  test('test encodeDocument: Array<Document>', () => {
+  it('test encodeDocument: Array<Document>', () => {
     // given
     type Input = { _id: ObjectId; username: string };
     const users: Array<Input> = [
@@ -80,7 +80,7 @@ describe('encrypt document', () => {
     expect(result[1].Id).toBe('8B2aGOaeb9iElQnGQr9e'); // type conversion check
   });
 
-  test('test encodeDocument: {key: Document}', () => {
+  it('test encodeDocument: {key: Document}', () => {
     // given
     type Input = {
       _id: ObjectId;
