@@ -14,7 +14,7 @@ class TestHelper {
     jsonData?: T;
   }> {
     const req = createRequest(requestOptions);
-    const res = createResponse();
+    const res = createResponse<NextApiResponse<T>>();
 
     await handler(req, res);
 
