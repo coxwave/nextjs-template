@@ -1,14 +1,19 @@
 test:
-	yarn
 	jest --config ./jest.config.js --maxWorkers=8 --detectOpenHandles
 
-docs:
+clean-module:
+	@rm -rf ./node_modules
+
+clean-build:
+	@rm -rf ./.next
+
+clean-docs:
+	@rm -rf ./public/docs
+
+clean: clean-module clean-build clean-docs
+
+docs: clean-docs
 	apidoc -i ./src/pages/ -o ./public/docs/ -t ./apidoc-template
 
-clean:
-	@rm -rf ./node_modules
-	@rm -rf ./.next
-	yarn install
-
-build: docs
+build: test docs
 	next build
