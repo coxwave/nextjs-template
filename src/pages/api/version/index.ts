@@ -15,7 +15,7 @@ export const API_VERSION = '0.1.0';
  * @apiSuccess (200) {String} apiVersion api server version
  *
  * @apiSuccessExample {json} Success-Response:
- * HTTP/1.1 200 OK
+ * HTTP/2 200 OK
  * {
  *     "apiVersion": "0.1.0"
  * }
