@@ -15,5 +15,5 @@ clean: clean-module clean-build clean-docs
 docs: clean-docs
 	apidoc -i ./src/pages/ -o ./public/docs/ -t ./apidoc-template
 
-build: test docs
+build: docs
 	next build

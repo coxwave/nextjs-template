@@ -1,5 +1,7 @@
 // @ts-check
 
+const { StatusCodes } = require('http-status-codes');
+
 const securityHeaders = [
   {
     key: 'X-XSS-Protection',
@@ -28,6 +30,16 @@ const nextConfig = {
       {
         source: '/(.*)',
         headers: securityHeaders,
+      },
+    ];
+  },
+  async redirects() {
+    return [
+      {
+        source: '/docs',
+        destination: '/docs/index.html',
+        statusCode: StatusCodes.PERMANENT_REDIRECT,
+        permanent: true,
       },
     ];
   },

@@ -2,7 +2,7 @@ import { StatusCodes } from 'http-status-codes';
 
 import TH from '@src/backend/test-helper';
 
-import apiHandler, { API_VERSION } from './version';
+import apiHandler, { API_VERSION } from '.';
 
 describe('/api/version', () => {
   it('GET /api/version -> Get api version', async () => {
