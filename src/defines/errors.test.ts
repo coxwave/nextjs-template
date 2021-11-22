@@ -22,6 +22,7 @@ describe('class ApiError', () => {
     const customStatusError = new ApiError('INTERNAL_SERVER_ERROR', undefined, 501);
 
     expect(customMessageError.message).not.toEqual(defaultError.message);
+    expect(customMessageError.statusCode).toEqual(defaultError.statusCode);
     expect(customStatusError.message).toEqual(defaultError.message);
     expect(customStatusError.statusCode).toEqual(501);
   });
