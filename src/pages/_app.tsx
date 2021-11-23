@@ -5,6 +5,9 @@ import Script from 'next/script';
 import { SWRConfig } from 'swr';
 
 import { CommonLayout } from '@src/frontend/components/layout';
+import { Modal, Notification } from '@src/frontend/components/ui';
+import { useModal } from '@src/frontend/hooks/use-modal';
+import { useNoti } from '@src/frontend/hooks/use-noti';
 import { useNProgress } from '@src/frontend/hooks/use-nprogress';
 import { fetcher } from '@src/frontend/lib/fetcher';
 
@@ -19,6 +22,9 @@ export default function App({ Component, pageProps }: AppProps) {
     speed: 500,
     showSpinner: false,
   });
+
+  const { modal, closeModal } = useModal();
+  const { noti, closeNoti } = useNoti();
 
   return (
     <>
@@ -73,6 +79,9 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </CommonLayout>
       </SWRConfig>
+
+      <Modal {...modal} close={closeModal} />
+      <Notification {...noti} close={closeNoti} />
     </>
   );
 }
