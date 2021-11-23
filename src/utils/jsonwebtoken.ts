@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import { ApiError } from '@src/defines/errors';
 import { JWT_SECRET } from '@src/utils/env';
 
-const JWT_ALGORITHM = 'HS512';
+const JWT_ALGORITHM = 'ES512';
 
 interface SignTokenOption {
   expiresIn?: string | number;
