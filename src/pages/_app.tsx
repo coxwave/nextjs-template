@@ -1,11 +1,12 @@
 import '@assets/main.css';
+import 'nprogress/nprogress.css';
 
 import { DefaultSeo } from 'next-seo';
+import useNProgress from 'next-use-nprogress';
 import Script from 'next/script';
 import { SWRConfig } from 'swr';
 
 import { CommonLayout } from '@src/frontend/components/layout';
-import { useNProgress } from '@src/frontend/hooks/use-nprogress';
 import { fetcher } from '@src/frontend/lib/fetcher';
 
 import type { AppProps } from 'next/app';
