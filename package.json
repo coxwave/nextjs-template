@@ -22,6 +22,7 @@
     "lottie-react": "2.1.0",
     "mongodb": "4.2.0",
     "next": "12.0.4",
+    "next-nprogress-hook": "1.0.2",
     "next-seo": "4.28.1",
     "nprogress": "0.2.0",
     "react": "17.0.2",
