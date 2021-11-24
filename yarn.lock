@@ -5047,17 +5047,17 @@ new-find-package-json@^1.1.0:
     debug "^4.3.2"
     tslib "^2.3.0"
 
-next-nprogress-hook@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/next-nprogress-hook/-/next-nprogress-hook-1.0.2.tgz#56d3c726d02951124e41ee0a8b2f3c2535a6d68d"
-  integrity sha512-cWbT4IZIwsm6JoPW/PhavkP+MukKmP50Q5Vhbi/oKVv3vtYEli2xNa9T9sKKAcECC1yajoakRp1v0MliOLj8ZQ==
-  dependencies:
-    nprogress "0.2.0"
-
 next-seo@4.28.1:
   version "4.28.1"
   resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-4.28.1.tgz#c98ee559c8ab7196c62d0f6903afd7a8cde47a03"
   integrity sha512-WZgwdM+UhpNF3A37zFllzmPhnOVJ9vYeYlc0n3Z/kYfz/QQgy8NEdncNNggS9dU4JD8xriaCcyknhy5OsrFsJw==
+
+next-use-nprogress@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/next-use-nprogress/-/next-use-nprogress-0.1.0.tgz#6e626c99dfc303d0f5d879e8b10b4afa003f794b"
+  integrity sha512-ODoB8Q9qs9zEEBWojJcYcBe5hje97dfzir2caKyYPGX55tkMs7M4srwjvSF2Q7/A17nhOnC7aWoYSl9fXEVyEw==
+  dependencies:
+    nprogress "0.2.0"
 
 next@12.0.4:
   version "12.0.4"

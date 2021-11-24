@@ -1,8 +1,8 @@
 import '@assets/main.css';
 import 'nprogress/nprogress.css';
 
-import useNProgress from 'next-nprogress-hook';
 import { DefaultSeo } from 'next-seo';
+import useNProgress from 'next-use-nprogress';
 import Script from 'next/script';
 import { SWRConfig } from 'swr';
 
