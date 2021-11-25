@@ -4,17 +4,30 @@ about: Suggest an idea for this project
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+### 🚀 Suggested Feature
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+<!---
+Please describe the suggested feature in detail :)
+It would be really nice if you could add a sudo code-blocks related to the feature
+-->
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+### 🎉 Expected Result
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+<!---
+Please describe the expected result.
+It would be really nice if you could add a sudo code-blocks.
+-->
+
+### 🔥 Motivation
+
+<!--- Please describe the source you got motivations from (if neccessary)-->
+
+### 🐤 Discussions
+
+<!---
+Please put list of topics you want to discuss. (if necessary)
+
+- [ ] any topic you want to discuss
+-->
