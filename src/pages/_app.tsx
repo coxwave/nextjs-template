@@ -4,17 +4,13 @@ import 'nprogress/nprogress.css';
 import { DefaultSeo } from 'next-seo';
 import useNProgress from 'next-use-nprogress';
 import Script from 'next/script';
-import { SWRConfig } from 'swr';
 
 import { CommonLayout } from '@src/frontend/components/layout';
 import { Modal, Notification } from '@src/frontend/components/ui';
 import { useModal } from '@src/frontend/hooks/use-modal';
 import { useNoti } from '@src/frontend/hooks/use-noti';
-import { fetcher } from '@src/frontend/lib/fetcher';
 
 import type { AppProps } from 'next/app';
-
-const fetcherSWR = async (url: string) => await fetcher(url).json();
 
 export default function App({ Component, pageProps }: AppProps) {
   useNProgress({
@@ -75,11 +71,9 @@ export default function App({ Component, pageProps }: AppProps) {
           },
         ]}
       />
-      <SWRConfig value={{ fetcher: fetcherSWR }}>
-        <CommonLayout>
-          <Component {...pageProps} />
-        </CommonLayout>
-      </SWRConfig>
+      <CommonLayout>
+        <Component {...pageProps} />
+      </CommonLayout>
 
       <Modal {...modal} close={closeModal} />
       <Notification {...noti} close={closeNoti} />
