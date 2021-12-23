@@ -1,4 +1,4 @@
-import { ComponentProps, ElementType, ReactNode } from 'react';
+import type { ComponentProps, ElementType, ReactNode } from 'react';
 
 // A unique placeholder we can use as a default. This is nice because we can use this instead of
 // defaulting to null / never / ... and possibly collide with actual data.

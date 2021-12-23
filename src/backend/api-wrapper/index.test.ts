@@ -2,9 +2,8 @@ import { StatusCodes } from 'http-status-codes';
 
 import TH from '@src/backend/test-helper';
 
-import { NextApiBuilder } from '.';
+import { NextApiBuilder, type ApiWrapper } from '.';
 
-import type { ApiWrapper } from '.';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 
 const mockHandler = async (req: NextApiRequest, res: NextApiResponse) => {
