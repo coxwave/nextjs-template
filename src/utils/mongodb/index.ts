@@ -1,4 +1,4 @@
-import { MongoClient, MongoClientOptions } from 'mongodb';
+import { MongoClient, type MongoClientOptions } from 'mongodb';
 
 import { isDev, isTest, MONGODB_URI } from '@src/utils/env';
 

@@ -1,7 +1,12 @@
-import { createRequest, createResponse } from 'node-mocks-http';
+import {
+  createRequest,
+  createResponse,
+  type MockRequest,
+  type MockResponse,
+  type RequestOptions,
+} from 'node-mocks-http';
 
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
-import type { MockRequest, MockResponse, RequestOptions } from 'node-mocks-http';
 
 class TestHelper {
   static async testApiHandler<T = any>(

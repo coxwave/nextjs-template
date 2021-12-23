@@ -1,6 +1,6 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-
 import { NextApiBuilder } from '@src/backend/api-wrapper';
+
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 export const API_VERSION = '0.1.0';
 
