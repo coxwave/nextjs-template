@@ -1,6 +1,6 @@
 import NextLink from 'next/link';
 
-import { PropsOf } from '@src/types';
+import type { PropsOf } from '@src/types';
 
 export default function Link({ href, children, ...props }: PropsOf<'a'>) {
   if (href === undefined) {
