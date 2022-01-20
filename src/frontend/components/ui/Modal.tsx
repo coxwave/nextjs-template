@@ -1,6 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { CheckIcon, ExclamationIcon } from '@heroicons/react/outline';
-import cn from 'classnames';
+import clsx from 'clsx';
 import { Fragment, useRef } from 'react';
 
 export interface ModalProps {
@@ -68,22 +68,25 @@ export default function Modal({
           >
             <div className="relative inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
               <div
-                className={cn({
+                className={clsx({
                   'sm:flex sm:items-start': variant === 'alert',
                 })}
               >
                 <div
-                  className={cn('mx-auto flex items-center justify-center h-12 w-12 rounded-full', {
-                    'bg-green-100': variant === 'default',
-                    'flex-shrink-0 bg-red-100 sm:mx-0 sm:h-10 sm:w-10': variant === 'alert',
-                  })}
+                  className={clsx(
+                    'mx-auto flex items-center justify-center h-12 w-12 rounded-full',
+                    {
+                      'bg-green-100': variant === 'default',
+                      'flex-shrink-0 bg-red-100 sm:mx-0 sm:h-10 sm:w-10': variant === 'alert',
+                    },
+                  )}
                 >
                   {/* <!-- Heroicon name: outline/check --> */}
                   {variant === 'default' && <CheckIcon className="h-6 w-6 text-green-600" />}
                   {variant === 'alert' && <ExclamationIcon className="h-6 w-6 text-red-600" />}
                 </div>
                 <div
-                  className={cn('mt-3 text-center', {
+                  className={clsx('mt-3 text-center', {
                     'sm:mt-5': variant === 'default',
                     'sm:mt-0 sm:ml-4 sm:text-left': variant === 'alert',
                   })}
@@ -97,7 +100,7 @@ export default function Modal({
                 </div>
               </div>
               <div
-                className={cn('mt-5', {
+                className={clsx('mt-5', {
                   'sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense':
                     variant === 'default',
                   'sm:mt-4 sm:flex sm:flex-row-reverse': variant === 'alert',
@@ -105,7 +108,7 @@ export default function Modal({
               >
                 <button
                   type="button"
-                  className={cn(
+                  className={clsx(
                     'w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium text-white sm:text-sm',
                     {
                       'bg-blue-400 hover:bg-lightBlue-500 sm:col-start-2': variant === 'default',
@@ -123,7 +126,7 @@ export default function Modal({
                 {cancelButton && (
                   <button
                     type="button"
-                    className={cn(
+                    className={clsx(
                       'mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:text-sm',
                       {
                         'sm:col-start-1': variant === 'default',

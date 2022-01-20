@@ -1,4 +1,4 @@
-import cn from 'classnames';
+import clsx from 'clsx';
 
 import type { Props, __ } from '@src/types';
 import { forwardRefWithAs } from '@src/utils/forward-ref-with-as';
@@ -39,7 +39,7 @@ const ButtonWithRef = forwardRefWithAs(function Button<
 
   return (
     <Component
-      className={cn(
+      className={clsx(
         className,
         'px-4 py-2 inline-flex items-center border shadow-sm rounded-md font-semibold',
         {
