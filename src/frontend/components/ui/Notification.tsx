@@ -1,7 +1,7 @@
 import { Transition } from '@headlessui/react';
 import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/outline';
 import { XIcon } from '@heroicons/react/solid';
-import cn from 'classnames';
+import clsx from 'clsx';
 import { Fragment } from 'react';
 
 export interface NotificationProps {
@@ -24,7 +24,7 @@ export default function Notification({
   return (
     <div
       aria-live="assertive"
-      className={cn(
+      className={clsx(
         className,
         'fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end',
       )}
@@ -43,25 +43,25 @@ export default function Notification({
         <div className="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
           <div className="p-4">
             <div
-              className={cn('flex', {
+              className={clsx('flex', {
                 'items-start': Boolean(content),
                 'items-center': !content,
               })}
             >
               <div className="flex-shrink-0">
                 <CheckCircleIcon
-                  className={cn('w-6 h-6 text-[#34D399]', {
+                  className={clsx('w-6 h-6 text-[#34D399]', {
                     hidden: variant !== 'default',
                   })}
                 />
                 <XCircleIcon
-                  className={cn('w-6 h-6 text-[#F87171]', {
+                  className={clsx('w-6 h-6 text-[#F87171]', {
                     hidden: variant !== 'alert',
                   })}
                 />
               </div>
               <div
-                className={cn('ml-3 w-0 flex-1 pt-0.5', {
+                className={clsx('ml-3 w-0 flex-1 pt-0.5', {
                   'flex items-center': !content,
                 })}
               >

@@ -1,5 +1,5 @@
 import { Menu, Transition } from '@headlessui/react';
-import cn from 'classnames';
+import clsx from 'clsx';
 import { Fragment, ReactNode } from 'react';
 
 interface DropdownItem {
@@ -39,14 +39,14 @@ export default function Dropdown({ button, dropdownItems }: DropdownProps) {
                 <Menu.Item key={`dropdownItem-${idx}-${label}`}>
                   {({ active }) => (
                     <button
-                      className={cn(
+                      className={clsx(
                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                         'w-full flex items-center px-4 py-2 text-sm',
                       )}
                       onClick={onClick}
                     >
                       {icon}
-                      <span className={cn({ 'ml-3': icon !== undefined })}>{label}</span>
+                      <span className={clsx({ 'ml-3': icon !== undefined })}>{label}</span>
                     </button>
                   )}
                 </Menu.Item>

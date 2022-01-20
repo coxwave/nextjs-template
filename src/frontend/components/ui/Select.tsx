@@ -1,6 +1,6 @@
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
-import cn from 'classnames';
+import clsx from 'clsx';
 import { Fragment, useCallback } from 'react';
 
 type SelectItem<TType> = {
@@ -46,7 +46,7 @@ export default function Select<TType>({
           <>
             <Listbox.Label className="block text-base font-semibold text-gray-700">
               <span>{label}</span>
-              <span className={cn('text-gray-400', { hidden: !optional })}>&nbsp;(선택)</span>
+              <span className={clsx('text-gray-400', { hidden: !optional })}>&nbsp;(선택)</span>
             </Listbox.Label>
             <div className="mt-1 relative">
               <Listbox.Button className="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-blue-400">
@@ -73,7 +73,7 @@ export default function Select<TType>({
                     <Listbox.Option
                       key={item.key}
                       className={({ active }) =>
-                        cn(
+                        clsx(
                           active ? 'text-white bg-blue-400' : 'text-gray-900',
                           'cursor-default select-none relative py-2 pl-3 pr-9',
                         )
@@ -83,7 +83,7 @@ export default function Select<TType>({
                       {({ selected, active }) => (
                         <>
                           <span
-                            className={cn(
+                            className={clsx(
                               selected ? 'font-semibold' : 'font-normal',
                               'block truncate',
                             )}
@@ -93,7 +93,7 @@ export default function Select<TType>({
 
                           {selected ? (
                             <span
-                              className={cn(
+                              className={clsx(
                                 active ? 'text-white' : 'text-blue-400',
                                 'absolute inset-y-0 right-0 flex items-center pr-4',
                               )}
