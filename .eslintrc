@@ -7,6 +7,7 @@
     "@next/next/no-img-element": "warn",
     "unused-imports/no-unused-imports": "warn",
     "import/newline-after-import": "error",
+    "no-restricted-imports": ["warn", { "patterns": ["../**"] }],
     "import/order": [
       "error",
       {
@@ -55,6 +56,11 @@
           },
           {
             "pattern": "$src/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "./**",
             "group": "internal",
             "position": "after"
           }
