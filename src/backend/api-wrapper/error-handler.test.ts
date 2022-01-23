@@ -1,8 +1,9 @@
 import { StatusCodes } from 'http-status-codes';
 import Joi from 'joi';
 
-import TH from '@src/backend/test-helper';
-import { ApiError, type ApiErrorJson } from '@src/defines/errors';
+import { ApiError, type ApiErrorJson } from '@defines/errors';
+
+import TH from '@backend/test-helper';
 
 import { NextApiBuilder } from '.';
 

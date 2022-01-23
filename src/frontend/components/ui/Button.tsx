@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 
-import type { Props, __ } from '@src/types';
-import { forwardRefWithAs } from '@src/utils/forward-ref-with-as';
+import type { Props, __ } from '@types';
+
+import { forwardRefWithAs } from '@utils/forward-ref-with-as';
 
 import type { ElementType, Ref } from 'react';
 

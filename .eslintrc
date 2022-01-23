@@ -19,17 +19,42 @@
             "position": "after"
           },
           {
-            "pattern": "@src/**",
+            "pattern": "@defines/**",
             "group": "internal",
             "position": "after"
           },
           {
-            "pattern": "@src/backend/**",
+            "pattern": "@backend/**",
             "group": "internal",
             "position": "after"
           },
           {
-            "pattern": "@src/frontend/**",
+            "pattern": "@frontend/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@pages/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@types",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@types/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@utils/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "$src/**",
             "group": "internal",
             "position": "after"
           }

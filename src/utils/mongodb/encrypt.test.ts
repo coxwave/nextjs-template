@@ -1,7 +1,8 @@
 import { ObjectId } from 'bson';
 
-import type { EncodeId } from '@src/types';
-import { decodeId, encodeDocument, encodeDocuments, encodeId } from '@src/utils/mongodb/encrypt';
+import type { EncodeId } from '@types';
+
+import { decodeId, encodeDocument, encodeDocuments, encodeId } from '@utils/mongodb/encrypt';
 
 describe('encrypt document', () => {
   it('test encodeId()', () => {

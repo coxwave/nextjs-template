@@ -1,4 +1,4 @@
-import type { EnvironmentVariable } from '@src/defines/env';
+import type { EnvironmentVariable } from '@defines/env';
 
 export const isTest: () => boolean = () => {
   return process.env.NODE_ENV === 'test';
