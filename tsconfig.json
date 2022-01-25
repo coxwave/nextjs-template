@@ -16,8 +16,15 @@
     "importsNotUsedAsValues": "error",
     "baseUrl": ".",
     "paths": {
-      "@assets/*": ["assets/*"],
-      "@src/*": ["src/*"]
+      "@assets/*": ["src/assets/*"],
+      "@defines/*": ["src/defines/*"],
+      "@backend/*": ["src/backend/*"],
+      "@frontend/*": ["src/frontend/*"],
+      "@pages/*": ["src/pages/*"],
+      "@types": ["src/types"],
+      "@types/*": ["src/types/*"],
+      "@utils/*": ["src/utils/*"],
+      "$src/*": ["src/*"]
     },
     "incremental": true
   },

@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 
-import TH from '@src/backend/test-helper';
+import TH from '@backend/test-helper';
 
 import { NextApiBuilder, type ApiWrapper } from '.';
 
