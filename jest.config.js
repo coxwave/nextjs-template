@@ -4,7 +4,6 @@ module.exports = {
   testEnvironment: 'node',
   moduleNameMapper: {
     '@assets/(.*)': '<rootDir>/src/assets/$1',
-    '@defines/(.*)': '<rootDir>/src/defines/$1',
     '@backend/(.*)': '<rootDir>/src/backend/$1',
     '@frontend/(.*)': '<rootDir>/src/frontend/$1',
     '@pages/(.*)': '<rootDir>/src/pages/$1',
