@@ -1,7 +1,7 @@
 import HashIds from 'hashids';
 import { ObjectId } from 'mongodb';
 
-import { HASHIDS_KEY } from '@utils/env';
+import { HASHIDS_KEY } from '@utils/env/internal';
 
 const hashIds = new HashIds(HASHIDS_KEY);
 

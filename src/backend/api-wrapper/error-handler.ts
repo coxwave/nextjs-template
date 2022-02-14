@@ -2,8 +2,7 @@ import { StatusCodes } from 'http-status-codes';
 import Joi from 'joi';
 import { isResSent } from 'next/dist/shared/lib/utils';
 
-import { ApiError } from '@defines/errors';
-
+import { ApiError } from '@utils/api-error';
 import { isProd } from '@utils/env';
 
 import type { ApiWrapper } from '.';
@@ -26,17 +25,22 @@ export const errorHandler: ApiWrapper = (handler: NextApiHandler) => async (req,
     const withDetails = !isProd();
 
     if (Joi.isError(err)) {
-      const joiError = new ApiError('VALIDATION_ERROR', err.message);
+      const joiError = new ApiError('VALIDATION_ERROR', err.message, undefined, err.stack);
 
       return res.status(joiError.statusCode).json(joiError.toJson(withDetails));
     }
 
-    if (ApiError.isApiError(err)) {
+    if (err instanceof ApiError) {
       return res.status(err.statusCode).json(err.toJson(withDetails));
     }
 
+    const internalServerError =
+      err instanceof Error
+        ? new ApiError('INTERNAL_SERVER_ERROR', err.message, undefined, err.stack)
+        : new ApiError('INTERNAL_SERVER_ERROR');
+
     return res
       .status(res.statusCode >= 400 ? res.statusCode : StatusCodes.INTERNAL_SERVER_ERROR)
-      .json(new ApiError('INTERNAL_SERVER_ERROR', (err as Error).message).toJson(withDetails));
+      .json(internalServerError.toJson(withDetails));
   }
 };

@@ -17,7 +17,6 @@
     "baseUrl": ".",
     "paths": {
       "@assets/*": ["src/assets/*"],
-      "@defines/*": ["src/defines/*"],
       "@backend/*": ["src/backend/*"],
       "@frontend/*": ["src/frontend/*"],
       "@pages/*": ["src/pages/*"],

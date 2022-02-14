@@ -1,9 +1,9 @@
 import { StatusCodes } from 'http-status-codes';
 import Joi from 'joi';
 
-import { ApiError, type ApiErrorJson } from '@defines/errors';
-
 import TH from '@backend/test-helper';
+
+import { ApiError, type ApiErrorJson } from '@utils/api-error';
 
 import { NextApiBuilder } from '.';
 
@@ -18,6 +18,9 @@ const mockHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       case 'unexpectedError':
         throw new Error('Unexpected Error');
+
+      case 'unexpectedWeirdError':
+        throw 'can I be thrown?';
 
       case 'throwWithStatusCode':
         res.status(StatusCodes.NOT_ACCEPTABLE);
@@ -72,7 +75,18 @@ describe('Default wrapper (error-handler)', () => {
     });
 
     expect(statusCode).toBe(StatusCodes.INTERNAL_SERVER_ERROR);
-    expect(jsonData?.code).toStrictEqual(new ApiError('INTERNAL_SERVER_ERROR').toJson().code);
+    expect(jsonData).toHaveProperty('stack');
+    expect(jsonData?.stack).toBeDefined();
+  });
+
+  it('should fail - unexpected weird error', async () => {
+    const { statusCode, jsonData } = await TH.testApiHandler<ApiErrorJson>(apiHandler, {
+      method: 'GET',
+      query: { error: 'unexpectedWeirdError' },
+    });
+
+    expect(statusCode).toBe(StatusCodes.INTERNAL_SERVER_ERROR);
+    expect(jsonData).not.toHaveProperty('stack');
   });
 
   it('should fail - throw error with statusCode', async () => {
@@ -82,7 +96,6 @@ describe('Default wrapper (error-handler)', () => {
     });
 
     expect(statusCode).toBe(StatusCodes.NOT_ACCEPTABLE);
-    expect(jsonData?.code).toStrictEqual(new ApiError('INTERNAL_SERVER_ERROR').toJson().code);
   });
 
   it('should fail - validation error', async () => {
@@ -92,7 +105,6 @@ describe('Default wrapper (error-handler)', () => {
     });
 
     expect(statusCode).toBe(StatusCodes.BAD_REQUEST);
-    expect(jsonData?.code).toStrictEqual(new ApiError('VALIDATION_ERROR').toJson().code);
   });
 
   it('should fail - api error', async () => {
@@ -102,6 +114,5 @@ describe('Default wrapper (error-handler)', () => {
     });
 
     expect(statusCode).toBe(StatusCodes.UNAUTHORIZED);
-    expect(jsonData?.code).toStrictEqual(new ApiError('TOKEN_EXPIRED').toJson().code);
   });
 });

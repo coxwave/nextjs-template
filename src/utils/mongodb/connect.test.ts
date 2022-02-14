@@ -1,9 +1,8 @@
 import cryptoRandomString from 'crypto-random-string';
 
-import { MONGODB_NAME } from '../env';
+import { MONGODB_NAME } from '@utils/env/internal';
 
 import { connectMongo } from './connect';
-
 import type { MongoDB } from './connect';
 
 describe('mongodb connection', () => {

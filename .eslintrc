@@ -20,11 +20,6 @@
             "position": "after"
           },
           {
-            "pattern": "@defines/**",
-            "group": "internal",
-            "position": "after"
-          },
-          {
             "pattern": "@backend/**",
             "group": "internal",
             "position": "after"

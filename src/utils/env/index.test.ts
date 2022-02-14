@@ -1,4 +1,4 @@
-import { getEnv, isDev, isProd, isTest } from './env';
+import { getEnv, isDev, isProd, isTest } from '.';
 
 describe('tests for utils/env.ts', () => {
   it('Checking NODE_ENV', () => {
