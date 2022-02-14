@@ -19,6 +19,9 @@ const mockHandler = async (req: NextApiRequest, res: NextApiResponse) => {
       case 'unexpectedError':
         throw new Error('Unexpected Error');
 
+      case 'unexpectedWeirdError':
+        throw 'can I be thrown?';
+
       case 'throwWithStatusCode':
         res.status(StatusCodes.NOT_ACCEPTABLE);
         throw new Error('Not Acceptable Error');
@@ -72,6 +75,18 @@ describe('Default wrapper (error-handler)', () => {
     });
 
     expect(statusCode).toBe(StatusCodes.INTERNAL_SERVER_ERROR);
+    expect(jsonData).toHaveProperty('stack');
+    expect(jsonData?.stack).toBeDefined();
+  });
+
+  it('should fail - unexpected weird error', async () => {
+    const { statusCode, jsonData } = await TH.testApiHandler<ApiErrorJson>(apiHandler, {
+      method: 'GET',
+      query: { error: 'unexpectedWeirdError' },
+    });
+
+    expect(statusCode).toBe(StatusCodes.INTERNAL_SERVER_ERROR);
+    expect(jsonData).not.toHaveProperty('stack');
   });
 
   it('should fail - throw error with statusCode', async () => {
