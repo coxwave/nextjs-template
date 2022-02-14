@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-import { ApiError } from '@defines/errors';
-
+import { ApiError } from '@utils/api-error';
 import { JWT_SECRET } from '@utils/env';
 
 const JWT_ALGORITHM = 'ES512';

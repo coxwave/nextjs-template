@@ -1,18 +1,13 @@
-import { ApiError, ERRORS } from './errors';
+import { ApiError, ERRORS } from './api-error';
 
 describe('class ApiError', () => {
   it('Basic error creation', () => {
     Object.entries(ERRORS).forEach(([key, value]) => {
       const error = new ApiError(key as never);
 
-      expect(ApiError.isApiError(error)).toBe(true);
-      expect(error.toJson()).toStrictEqual({ name: value.name, code: value.code });
-      expect(error.toJson(true)).toStrictEqual({
-        name: value.name,
-        code: value.code,
-        message: value.message,
-      });
+      expect(error).toBeInstanceOf(ApiError);
       expect(error.statusCode).toBe(value.statusCode);
+      expect(error.toJson()).toStrictEqual({ name: key, message: value.message });
     });
   });
 
