@@ -1,19 +1,19 @@
 test:
-	jest --config ./jest.config.js --maxWorkers=8 --detectOpenHandles
+	jest --config jest.config.js --maxWorkers=8 --detectOpenHandles
 
 clean-module:
-	@rm -rf ./node_modules
+	@rm -rf node_modules
 
 clean-build:
-	@rm -rf ./.next
+	@rm -rf .next
 
 clean-docs:
-	@rm -rf ./public/docs
+	@rm -rf public/docs
 
 clean: clean-module clean-build clean-docs
 
 docs: clean-docs
-	apidoc -i ./src/pages/ -o ./public/docs/ -t ./apidoc-template
+	apidoc -i src/pages -o public/docs
 
 build: docs
 	next build
