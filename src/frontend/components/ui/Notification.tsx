@@ -26,7 +26,7 @@ export default function Notification({
       aria-live="assertive"
       className={clsx(
         className,
-        'fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end',
+        'pointer-events-none fixed inset-0 flex items-end justify-center px-4 py-6 sm:items-start sm:justify-end sm:p-6',
       )}
     >
       {/* Notification panel, dynamically insert this into the live region when it needs to be displayed */}
@@ -40,7 +40,7 @@ export default function Notification({
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <div className="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+        <div className="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
           <div className="p-4">
             <div
               className={clsx('flex', {
@@ -50,12 +50,12 @@ export default function Notification({
             >
               <div className="flex-shrink-0">
                 <CheckCircleIcon
-                  className={clsx('w-6 h-6 text-[#34D399]', {
+                  className={clsx('h-6 w-6 text-[#34D399]', {
                     hidden: variant !== 'default',
                   })}
                 />
                 <XCircleIcon
-                  className={clsx('w-6 h-6 text-[#F87171]', {
+                  className={clsx('h-6 w-6 text-[#F87171]', {
                     hidden: variant !== 'alert',
                   })}
                 />
@@ -66,11 +66,11 @@ export default function Notification({
                 })}
               >
                 <p className="font-semibold text-gray-900">{title}</p>
-                <p className="mt-1 leading-5 font-medium text-gray-500">{content}</p>
+                <p className="mt-1 font-medium leading-5 text-gray-500">{content}</p>
               </div>
-              <div className="ml-4 flex-shrink-0 flex">
+              <div className="ml-4 flex flex-shrink-0">
                 <button
-                  className="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   onClick={close}
                 >
                   <span className="sr-only">Close</span>

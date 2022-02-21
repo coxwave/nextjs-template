@@ -48,12 +48,12 @@ export default function Select<TType>({
               <span>{label}</span>
               <span className={clsx('text-gray-400', { hidden: !optional })}>&nbsp;(선택)</span>
             </Listbox.Label>
-            <div className="mt-1 relative">
-              <Listbox.Button className="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-blue-400">
+            <div className="relative mt-1">
+              <Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400">
                 <span className="block truncate text-base">
                   {getItemByValue(selectedValue).label}
                 </span>
-                <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                   <SelectorIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                 </span>
               </Listbox.Button>
@@ -67,15 +67,15 @@ export default function Select<TType>({
               >
                 <Listbox.Options
                   static
-                  className="absolute mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none z-10"
+                  className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                 >
                   {items.map((item) => (
                     <Listbox.Option
                       key={item.key}
                       className={({ active }) =>
                         clsx(
-                          active ? 'text-white bg-blue-400' : 'text-gray-900',
-                          'cursor-default select-none relative py-2 pl-3 pr-9',
+                          active ? 'bg-blue-400 text-white' : 'text-gray-900',
+                          'relative cursor-default select-none py-2 pl-3 pr-9',
                         )
                       }
                       value={item}
