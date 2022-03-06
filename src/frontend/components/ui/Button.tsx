@@ -42,16 +42,16 @@ const ButtonWithRef = forwardRefWithAs(function Button<
     <Component
       className={clsx(
         className,
-        'px-4 py-2 inline-flex items-center border shadow-sm rounded-md font-semibold',
+        'inline-flex items-center rounded-md border px-4 py-2 font-semibold shadow-sm',
         {
           'text-sm': size === 'sm',
           'text-base': size === 'base',
           'text-lg': size === 'lg',
-          'justify-center w-full px-1.5 py-2': full,
+          'w-full justify-center px-1.5 py-2': full,
         },
         colorClasses[color],
         {
-          'text-white disabled:text-gray-50 disabled:bg-gray-400 disabled:opacity-70 disabled:cursor-default':
+          'text-white disabled:cursor-default disabled:bg-gray-400 disabled:text-gray-50 disabled:opacity-70':
             color !== 'white',
         },
       )}

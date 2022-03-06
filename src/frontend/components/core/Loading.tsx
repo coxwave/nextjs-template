@@ -4,8 +4,8 @@ import spinner from '@assets/spinner.json';
 
 export default function Loading() {
   return (
-    <div className="flex w-full h-full absolute inset-0 justify-center items-center">
-      <Lottie animationData={spinner} className="w-80 h-80" />
+    <div className="absolute inset-0 flex h-full w-full items-center justify-center">
+      <Lottie animationData={spinner} className="h-80 w-80" />
     </div>
   );
 }

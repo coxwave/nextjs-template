@@ -33,7 +33,7 @@ export default function Dropdown({ button, dropdownItems }: DropdownProps) {
           >
             <Menu.Items
               static
-              className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-10"
+              className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
             >
               {dropdownItems.map(({ icon, label, onClick }, idx) => (
                 <Menu.Item key={`dropdownItem-${idx}-${label}`}>
@@ -41,7 +41,7 @@ export default function Dropdown({ button, dropdownItems }: DropdownProps) {
                     <button
                       className={clsx(
                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                        'w-full flex items-center px-4 py-2 text-sm',
+                        'flex w-full items-center px-4 py-2 text-sm',
                       )}
                       onClick={onClick}
                     >
