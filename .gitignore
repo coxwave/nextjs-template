@@ -2,8 +2,15 @@
 
 # dependencies
 node_modules
-/.pnp
-.pnp.js
+
+# yarn berry
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
 
 # testing
 /coverage
