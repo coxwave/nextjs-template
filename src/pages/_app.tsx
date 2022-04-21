@@ -1,9 +1,8 @@
 import '@assets/main.css';
-import 'nprogress/nprogress.css';
 
 import { DefaultSeo } from 'next-seo';
-import useNProgress from 'next-use-nprogress';
 import Script from 'next/script';
+import NextNProgress from 'nextjs-progressbar';
 
 import { CommonLayout } from '@frontend/components/layout';
 import { Modal, Notification } from '@frontend/components/ui';
@@ -13,13 +12,6 @@ import { useNoti } from '@frontend/hooks/use-noti';
 import type { AppProps } from 'next/app';
 
 export default function App({ Component, pageProps }: AppProps) {
-  useNProgress({
-    minimum: 0.3,
-    easing: 'ease',
-    speed: 500,
-    showSpinner: false,
-  });
-
   const { modal, closeModal } = useModal();
   const { noti, closeNoti } = useNoti();
 
@@ -70,6 +62,13 @@ export default function App({ Component, pageProps }: AppProps) {
             href: '/assets/site.webmanifest',
           },
         ]}
+      />
+      <NextNProgress
+        color="#29D"
+        showOnShallow={false}
+        height={2}
+        startPosition={0.3}
+        options={{ easing: 'ease', speed: 500, showSpinner: false }}
       />
       <CommonLayout>
         <Component {...pageProps} />
