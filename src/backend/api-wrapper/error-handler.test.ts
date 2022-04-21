@@ -1,5 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
-import Joi from 'joi';
+import { z } from 'zod';
 
 import TH from '@backend/test-helper';
 
@@ -30,7 +30,7 @@ const mockHandler = async (req: NextApiRequest, res: NextApiResponse) => {
         throw new ApiError('TOKEN_EXPIRED');
 
       case 'validationError':
-        await Joi.string().valid('shouldBeDifferent').validateAsync(req.query.error);
+        await z.literal('shouldBeDifferent').parseAsync(req.query.error);
     }
 
     res.status(StatusCodes.OK).json({ hello: 'world' });

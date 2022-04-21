@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
-import Joi from 'joi';
 import { isResSent } from 'next/dist/shared/lib/utils';
+import { ZodError } from 'zod';
 
 import { ApiError } from '@utils/api-error';
 import { isProd } from '@utils/env';
@@ -24,7 +24,7 @@ export const errorHandler: ApiWrapper = (handler: NextApiHandler) => async (req,
 
     const withDetails = !isProd();
 
-    if (Joi.isError(err)) {
+    if (err instanceof ZodError) {
       const joiError = new ApiError('VALIDATION_ERROR', err.message, undefined, err.stack);
 
       return res.status(joiError.statusCode).json(joiError.toJson(withDetails));
